@@ -209,7 +209,7 @@ button { font: inherit; }
 }
 @media (max-height:720px) and (max-width:700px) { .intro-copy h1{font-size:2.1rem}.intro-copy > p:not(.scene-eyebrow):not(.intro-apology){font-size:.8rem}.intro-note{display:none}.stage-narrative{min-height:calc(100svh - 13rem)}.narrative-copy h2{font-size:1.8rem}.journey-passage{line-height:1.55}.timeline-hint{display:none} }
 @media (max-height:520px) and (max-width:700px) {
-  .has-arrived .present-closing { inset:4.1rem 7.8rem 5.5rem 0; max-height:none; padding:.7rem; }
+  .has-arrived .present-closing { inset:4.1rem 7.8rem 7.5rem 0; max-height:none; padding:.7rem; }
   .has-arrived .present-closing h3 { margin:.35rem 0 .55rem; font-size:1rem; }
   .has-arrived .present-closing li { padding:.25rem 0; font-size:.52rem; }
   .has-arrived .video-call-window { top:3.2rem; width:6.2rem; }
