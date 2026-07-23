@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.DS_Store
+*.tsbuildinfo
+.superpowers/
+docs/superpowers/
+
+# Keep the deployable copy under public/ only.
+/YaYa.mp3
+
+# Keep only the final images used by the page.
+src/assets/*-source.png
+src/assets/*-v2.png
+src/assets/*-v3.png
