@@ -19,7 +19,9 @@ describe('VideoCallWindow', () => {
       <VideoCallWindow progress={2 / 7} perspective="sender" onToggle={onToggle} />,
     )
 
-    await user.click(screen.getByRole('button', { name: '切换到她的视角' }))
+    const switchButton = screen.getByRole('button', { name: '切换到她的视角' })
+    expect(switchButton.querySelector('.home-office-scene')).not.toBeInTheDocument()
+    await user.click(switchButton)
     expect(onToggle).toHaveBeenCalledOnce()
     expect(container.querySelector('.home-office-scene')).toBeInTheDocument()
 

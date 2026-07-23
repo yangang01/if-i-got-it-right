@@ -33,7 +33,7 @@ describe('TimelineController', () => {
     expect(screen.getByRole('button', { name: '09:40 接通视频' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: '10:00 慢慢起床' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: '10:10 换好衣服' })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: '10:25 悠闲办公' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '10:25 居家办公' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: '10:50 好好说完' })).toBeInTheDocument()
     expect(screen.getByRole('slider', { name: '拖动早晨时间线' })).toHaveValue('643')
   })

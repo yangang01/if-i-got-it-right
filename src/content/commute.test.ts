@@ -49,7 +49,7 @@ describe('commute narrative', () => {
       '枕边聊天',
       '慢慢起床',
       '换好衣服',
-      '悠闲办公',
+      '居家办公',
       '陪到最后',
       '好好说完',
     ])
@@ -64,6 +64,10 @@ describe('commute narrative', () => {
     expect(herStory).toContain('认真说完')
     expect(herStory).not.toContain('我觉得')
     expect(herStory).not.toContain('我心里')
+    expect(herStory).not.toContain('最重要')
+    expect(herStory).not.toContain('担心')
+    expect(herStory).not.toContain('轻松')
+    expect(herStory).not.toContain('被珍惜')
   })
 
   it('ends with five concrete commitments and no obsolete reply request', () => {

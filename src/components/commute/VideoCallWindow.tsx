@@ -15,12 +15,7 @@ export function VideoCallWindow({
 }) {
   const homeState = progress >= 3 / 7 ? 'dressed' : 'resting'
   const showingHer = perspective === 'sender'
-  return <button
-    type="button"
-    className={`video-call-window perspective-switch is-showing-${showingHer ? 'her' : 'sender'}`}
-    onClick={onToggle}
-    aria-label={showingHer ? '切换到她的视角' : '切换回我的视角'}
-  >
+  return <div className={`video-call-window perspective-switch is-showing-${showingHer ? 'her' : 'sender'}`}>
     <span className="call-status"><i />{showingHer ? '视频通话中' : '我的画面'}</span>
     {showingHer
       ? <HomeOfficeScene state={homeState} />
@@ -31,5 +26,11 @@ export function VideoCallWindow({
           </span>
         </span>}
     <span className="perspective-switch-hint">{showingHer ? '轻触，看她的此刻' : '轻触，回到我的这边'} <i>↗</i></span>
-  </button>
+    <button
+      type="button"
+      className="perspective-switch-hit-area"
+      onClick={onToggle}
+      aria-label={showingHer ? '切换到她的视角' : '切换回我的视角'}
+    />
+  </div>
 }

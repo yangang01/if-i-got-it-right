@@ -55,8 +55,8 @@ describe('CommuteExperience', () => {
 
     await user.click(screen.getByRole('button', { name: '切换到她的视角' }))
     expect(screen.getByRole('main')).toHaveClass('is-her-perspective')
-    expect(screen.getByRole('button', { name: '10:25 悠闲办公' })).toBeInTheDocument()
-    expect(screen.getByText(/你在家悠闲办公/)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '10:25 居家办公' })).toBeInTheDocument()
+    expect(screen.getByText(/你在家办公/)).toBeInTheDocument()
     expect(screen.getByRole('slider', { name: '拖动早晨时间线' })).toHaveValue('643')
 
     await user.click(screen.getByRole('button', { name: '切换回我的视角' }))

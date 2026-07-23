@@ -83,7 +83,8 @@ button { font: inherit; }
 .sender-route-scene p { position:absolute; z-index:7; right:4.5rem; bottom:2.4rem; margin:0; color:rgba(255,255,255,.78); font:400 .65rem/1.7 Georgia,'Songti SC',serif; letter-spacing:.08em; text-align:right; }.sender-route-scene p span { color:rgba(255,255,255,.46); font:500 .5rem/1.4 system-ui,sans-serif; letter-spacing:.14em; }
 .video-call-window { position:absolute; z-index:7; top:4.2rem; right:clamp(1.2rem,5vw,4.5rem); width:clamp(10.5rem,18vw,15rem); aspect-ratio:4/5; overflow:hidden; border:1px solid rgba(255,255,255,.42); border-radius:1.2rem; padding:0; color:inherit; background:#6b4b49; box-shadow:0 20px 60px rgba(5,9,14,.34),0 0 0 5px rgba(255,255,255,.04); cursor:pointer; text-align:left; transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s; }
 .video-call-window:hover { transform:translateY(-3px) scale(1.015); border-color:rgba(239,195,151,.72); box-shadow:0 24px 68px rgba(5,9,14,.42),0 0 0 6px rgba(208,160,120,.08); }
-.video-call-window:focus-visible { outline:2px solid var(--dawn-apricot); outline-offset:4px; }
+.perspective-switch-hit-area { position:absolute; z-index:12; inset:0; width:100%; height:100%; border:0; border-radius:inherit; padding:0; background:transparent; cursor:pointer; }
+.perspective-switch-hit-area:focus-visible { outline:2px solid var(--dawn-apricot); outline-offset:-4px; }
 .perspective-switch-hint { position:absolute; z-index:10; right:.55rem; bottom:.5rem; max-width:68%; border-radius:99px; padding:.28rem .45rem; color:rgba(255,255,255,.78); background:rgba(13,17,25,.56); backdrop-filter:blur(8px); font-size:.45rem; letter-spacing:.05em; white-space:nowrap; }
 .perspective-switch-hint i { color:var(--dawn-apricot); font-style:normal; }
 .compact-sender-scene { position:absolute; inset:0; display:block; overflow:hidden; background:#27323c; }
@@ -207,4 +208,10 @@ button { font: inherit; }
   .present-closing li { font-size:.64rem; }
 }
 @media (max-height:720px) and (max-width:700px) { .intro-copy h1{font-size:2.1rem}.intro-copy > p:not(.scene-eyebrow):not(.intro-apology){font-size:.8rem}.intro-note{display:none}.stage-narrative{min-height:calc(100svh - 13rem)}.narrative-copy h2{font-size:1.8rem}.journey-passage{line-height:1.55}.timeline-hint{display:none} }
+@media (max-height:520px) and (max-width:700px) {
+  .has-arrived .present-closing { inset:4.1rem 7.8rem 5.5rem 0; max-height:none; padding:.7rem; }
+  .has-arrived .present-closing h3 { margin:.35rem 0 .55rem; font-size:1rem; }
+  .has-arrived .present-closing li { padding:.25rem 0; font-size:.52rem; }
+  .has-arrived .video-call-window { top:3.2rem; width:6.2rem; }
+}
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }.rewind-stage::before,.rewind-orbit,.morning-horizon,.morning-street,.route-buildings,.route-street i,.route-train,.route-office { transform:none!important; } }

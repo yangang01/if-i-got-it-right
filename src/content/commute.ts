@@ -47,7 +47,7 @@ export const commuteNarrative = {
       label: '接通视频',
       title: '视频接通时，你不用再等我想起约定。',
       dialogue: '我一出门就打给你了。早上好。',
-      reflection: '从你的这一边看，最重要的不是电话响了，而是你第一时间就能确认：我也在期待。',
+      reflection: '从你的这一边看，电话在约好的第一刻响起；我也直接说清楚，这段时间我同样期待。',
     },
     {
       id: 'station',
@@ -56,7 +56,7 @@ export const commuteNarrative = {
       label: '换好衣服',
       title: '你慢慢起床、换好衣服，视频一直没有断。',
       dialogue: '你慢慢来，我一直在。到地铁站我会先告诉你。',
-      reflection: '你不需要一边准备自己的上午，一边担心我会不会又把这段时间让给别的事情。',
+      reflection: '你一边准备自己的上午，视频仍然继续；我没有再把这段时间让给别的事情。',
     },
     {
       id: 'arrive',
@@ -65,7 +65,7 @@ export const commuteNarrative = {
       label: '好好说完',
       title: '你陪我走到公司，我们再认真说完这个早晨。',
       dialogue: '我到公司了。谢谢你一直陪着我，今天也要开心。',
-      reflection: '这段通话有清楚的开始，也有被珍惜的结束，不会只剩下一次突然的挂断。',
+      reflection: '这段通话从接通到告别都完整发生，我没有再用一次突然的挂断收尾。',
     },
   ],
   processBeats: [
@@ -88,7 +88,7 @@ export const commuteNarrative = {
     { id: 'share-morning', minute: 10, time: '09:50', label: '枕边聊天', kind: 'minor' },
     { id: 'quiet-company', minute: 20, time: '10:00', label: '慢慢起床', kind: 'minor' },
     { id: 'station', minute: 30, time: '10:10', label: '换好衣服', kind: 'major' },
-    { id: 'metro-call', minute: 45, time: '10:25', label: '悠闲办公', kind: 'minor' },
+    { id: 'metro-call', minute: 45, time: '10:25', label: '居家办公', kind: 'minor' },
     { id: 'almost-office', minute: 60, time: '10:40', label: '陪到最后', kind: 'minor' },
     { id: 'arrive', minute: 70, time: '10:50', label: '好好说完', kind: 'major' },
   ],
@@ -106,9 +106,9 @@ export const commuteNarrative = {
     { at: 1 / 7, copy: '你靠在枕边听我说清晨的树影和路边的小店，偶尔回应，也可以只是安静地看着。' },
     { at: 2 / 7, copy: '十点左右，你慢慢起床、整理长发；这一次，准备自己的上午不会让视频被匆忙打断。' },
     { at: 3 / 7, copy: '你换好夏天的露肩衣服，我也刚到地铁站。画面短暂卡顿以前，我先告诉你“我还在”。' },
-    { at: 9 / 14, copy: '你在家悠闲办公，把视频放在手边；不需要一直说话，也不会被其他消息一次次挤到后面。' },
+    { at: 9 / 14, copy: '你在家办公，把视频放在手边；我们不需要一直说话，我也没有再去看其他视频或回复别的消息。' },
     { at: 6 / 7, copy: '你陪我走完最后一段。我没有提前结束，也没有让你猜这通视频还剩下多少时间。' },
-    { at: 1, copy: '到公司以后，我先谢谢你的陪伴，再和你认真说完这个早晨，让你轻松回到自己的上午。' },
+    { at: 1, copy: '到公司以后，我先谢谢你的陪伴，再和你认真说完这个早晨，让这段视频完整地结束。' },
   ],
   commitments: [
     '约好的时间，我会提前留出来，不再让你的期待落空。',

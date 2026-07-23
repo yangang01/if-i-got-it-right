@@ -42,4 +42,8 @@ describe('letter visual system', () => {
     expect(mainBed).toContain('width:min(60rem,94vw)')
     expect(rule('.home-bed')).toContain('width:98%')
   })
+
+  it('keeps the final card usable on short landscape phones', () => {
+    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing\s*\{[^}]*inset:4\.1rem 7\.8rem 5\.5rem 0[^}]*max-height:none/)
+  })
 })
