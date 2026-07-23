@@ -44,6 +44,9 @@ describe('letter visual system', () => {
   })
 
   it('keeps the final card usable on short landscape phones', () => {
-    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing\s*\{[^}]*inset:4\.1rem 7\.8rem 7\.5rem 0[^}]*max-height:none/)
+    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing\s*\{[^}]*inset:4\.1rem 7\.8rem auto 0[^}]*box-sizing:border-box[^}]*max-height:calc\(100svh - 14rem\)/)
+    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing \.scene-eyebrow\s*\{[^}]*margin:0/)
+    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing h3 br\s*\{[^}]*display:none/)
+    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing ul\s*\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/)
   })
 })
