@@ -1,8 +1,10 @@
 import { commuteNarrative } from '../../content/commute'
 import { formatCommuteTime, timelineBeatPoints } from '../../utils/commuteTimeline'
+import type { Perspective } from './perspective'
 
 type Props = {
   progress: number
+  perspective?: Perspective
   isDragging: boolean
   onPointerDown: (x: number) => void
   onPointerMove: (x: number, width: number) => void
@@ -10,7 +12,8 @@ type Props = {
   onSelect: (progress: number) => void
 }
 
-export function TimelineController({ progress, isDragging, onPointerDown, onPointerMove, onPointerUp, onSelect }: Props) {
+export function TimelineController({ progress, perspective = 'sender', isDragging, onPointerDown, onPointerMove, onPointerUp, onSelect }: Props) {
+  const timelineItems = perspective === 'her' ? commuteNarrative.herTimeline : commuteNarrative.timeline
   return <section className={`timeline-shell ${isDragging ? 'is-dragging' : ''}`} aria-label="70 分钟通勤时间线">
     <div className="timeline-time"><span>{formatCommuteTime(progress)}</span><small>2026 · 07 · 21</small></div>
     <div className="timeline-track">
@@ -32,11 +35,11 @@ export function TimelineController({ progress, isDragging, onPointerDown, onPoin
         onPointerCancel={onPointerUp}
       />
     </div>
-    <div className="stage-markers">{commuteNarrative.timeline.map((beat, index) =>
-      <button key={beat.id} style={{ left: `${timelineBeatPoints[index] * 100}%` }} className={`${beat.kind === 'major' ? 'is-major' : 'is-minor'} ${index === 0 ? 'is-first' : ''} ${index === commuteNarrative.timeline.length - 1 ? 'is-last' : ''} ${progress >= timelineBeatPoints[index] ? 'is-reached' : ''}`} onClick={() => onSelect(timelineBeatPoints[index])} aria-label={`${beat.time} ${beat.label}`}>
+    <div className="stage-markers">{timelineItems.map((beat, index) =>
+      <button key={beat.id} style={{ left: `${timelineBeatPoints[index] * 100}%` }} className={`${beat.kind === 'major' ? 'is-major' : 'is-minor'} ${index === 0 ? 'is-first' : ''} ${index === timelineItems.length - 1 ? 'is-last' : ''} ${progress >= timelineBeatPoints[index] ? 'is-reached' : ''}`} onClick={() => onSelect(timelineBeatPoints[index])} aria-label={`${beat.time} ${beat.label}`}>
         <i /><span>{beat.label}</span><small>{beat.time}</small>
       </button>
     )}</div>
-    <p className="timeline-hint">左右拖动重走这段早晨 · 点击时间也可以抵达</p>
+    <p className="timeline-hint">{perspective === 'her' ? '同一段时间 · 现在从她的这边看' : '左右拖动重走这段早晨 · 点击时间也可以抵达'}</p>
   </section>
 }

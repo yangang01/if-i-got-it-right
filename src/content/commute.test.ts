@@ -39,6 +39,33 @@ describe('commute narrative', () => {
     expect(commuteNarrative.timeline.filter((item) => item.kind === 'minor')).toHaveLength(4)
   })
 
+  it('keeps her perspective on the same seven timestamps without inventing her inner voice', () => {
+    expect(commuteNarrative.herStages.map((stage) => stage.time)).toEqual(['09:40', '10:10', '10:50'])
+    expect(commuteNarrative.herTimeline.map((item) => item.time)).toEqual(
+      commuteNarrative.timeline.map((item) => item.time),
+    )
+    expect(commuteNarrative.herTimeline.map((item) => item.label)).toEqual([
+      '接通视频',
+      '枕边聊天',
+      '慢慢起床',
+      '换好衣服',
+      '悠闲办公',
+      '陪到最后',
+      '好好说完',
+    ])
+
+    const herStory = JSON.stringify({
+      stages: commuteNarrative.herStages,
+      passages: commuteNarrative.herPassages,
+    })
+    expect(herStory).toContain('躺在床上')
+    expect(herStory).toContain('起床')
+    expect(herStory).toContain('办公')
+    expect(herStory).toContain('认真说完')
+    expect(herStory).not.toContain('我觉得')
+    expect(herStory).not.toContain('我心里')
+  })
+
   it('ends with five concrete commitments and no obsolete reply request', () => {
     expect(commuteNarrative.commitments).toEqual([
       '约好的时间，我会提前留出来，不再让你的期待落空。',

@@ -8,11 +8,13 @@ import { RewindClock } from './RewindClock'
 import { StageNarrative } from './StageNarrative'
 import { TimelineController } from './TimelineController'
 import { VideoCallWindow } from './VideoCallWindow'
+import type { Perspective } from './perspective'
 
 type Phase = 'reality' | 'rewind' | 'commute'
 
 export function CommuteExperience({ onStartRewind }: { onStartRewind?: () => void | Promise<void> }) {
   const [phase, setPhase] = useState<Phase>('reality')
+  const [perspective, setPerspective] = useState<Perspective>('sender')
   const [rewindProgress, setRewindProgress] = useState(0)
   const timeline = useCommuteTimeline()
   const rewind = useTimeRewind()
@@ -57,17 +59,17 @@ export function CommuteExperience({ onStartRewind }: { onStartRewind?: () => voi
   if (phase === 'rewind') return <RewindClock timestamp={rewind.getTimestamp(rewindProgress)} progress={rewindProgress} />
 
   const arrived = timeline.progress >= .999
-  return <main className={`commute-experience ${arrived ? 'has-arrived' : ''}`}>
-    <CommuteScene progress={timeline.progress} />
-    <VideoCallWindow progress={timeline.progress} />
-    <div className="experience-top"><span>两个地方 · 同一通视频</span><span>09:40 — 10:50</span></div>
+  return <main className={`commute-experience is-${perspective}-perspective ${arrived ? 'has-arrived' : ''}`}>
+    <CommuteScene progress={timeline.progress} perspective={perspective} />
+    <VideoCallWindow progress={timeline.progress} perspective={perspective} onToggle={() => setPerspective((current) => current === 'sender' ? 'her' : 'sender')} />
+    <div className="experience-top"><span>{perspective === 'her' ? '她的房间 · 同一通视频' : '两个地方 · 同一通视频'}</span><span>09:40 — 10:50</span></div>
     <div className="commute-body">
-      <StageNarrative progress={timeline.progress} />
+      <StageNarrative progress={timeline.progress} perspective={perspective} />
       {arrived && <motion.section className="present-closing" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
         <p className="scene-eyebrow">回到现在</p><h3>理解了还不够，<br />以后要真的做到。</h3>
         <ul>{commuteNarrative.commitments.map((item) => <li key={item}>{item}</li>)}</ul>
       </motion.section>}
     </div>
-    <TimelineController progress={timeline.progress} isDragging={timeline.isDragging} onPointerDown={timeline.beginDrag} onPointerMove={timeline.updateDrag} onPointerUp={timeline.endDrag} onSelect={timeline.setProgress} />
+    <TimelineController progress={timeline.progress} perspective={perspective} isDragging={timeline.isDragging} onPointerDown={timeline.beginDrag} onPointerMove={timeline.updateDrag} onPointerUp={timeline.endDrag} onSelect={timeline.setProgress} />
   </main>
 }

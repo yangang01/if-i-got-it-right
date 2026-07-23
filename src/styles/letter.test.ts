@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs'
 const css = readFileSync('src/styles/letter.css', 'utf8')
 const rule = (selector: string) => {
   const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  return css.match(new RegExp(`${escaped}\\s*\\{([^}]*)\\}`))?.[1] ?? ''
+  return css.match(new RegExp(`(?:^|\\n)\\s*${escaped}\\s*\\{([^}]*)\\}`))?.[1] ?? ''
 }
 
 describe('letter visual system', () => {
@@ -35,5 +35,11 @@ describe('letter visual system', () => {
     expect(rule('.home-bed')).toContain('bottom:7%')
     expect(rule('.home-bed')).toContain('width:98%')
     expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.home-bed\s*\{[^}]*right:2%[^}]*bottom:7%[^}]*width:96%/)
+  })
+
+  it('gives her main perspective a separate full-screen composition', () => {
+    const mainBed = rule('.commute-scene.is-her-view .home-bed')
+    expect(mainBed).toContain('width:min(60rem,94vw)')
+    expect(rule('.home-bed')).toContain('width:98%')
   })
 })

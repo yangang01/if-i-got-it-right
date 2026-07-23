@@ -81,7 +81,27 @@ button { font: inherit; }
 .route-office { position:absolute; z-index:5; inset:8% 7% 19% 34%; display:grid; grid-template-columns:repeat(3,1fr); gap:5%; padding:5%; border-radius:.8rem; background:rgba(31,39,49,.92); opacity:clamp(0,calc((var(--progress) - .88) * 9),1); transform:translateY(calc((1 - var(--progress)) * 25%)); }
 .route-office i { background:linear-gradient(#efbb83,#645f69); box-shadow:0 0 24px rgba(239,187,131,.2); }
 .sender-route-scene p { position:absolute; z-index:7; right:4.5rem; bottom:2.4rem; margin:0; color:rgba(255,255,255,.78); font:400 .65rem/1.7 Georgia,'Songti SC',serif; letter-spacing:.08em; text-align:right; }.sender-route-scene p span { color:rgba(255,255,255,.46); font:500 .5rem/1.4 system-ui,sans-serif; letter-spacing:.14em; }
-.video-call-window { position:absolute; z-index:7; top:4.2rem; right:clamp(1.2rem,5vw,4.5rem); width:clamp(10.5rem,18vw,15rem); aspect-ratio:4/5; overflow:hidden; border:1px solid rgba(255,255,255,.42); border-radius:1.2rem; background:#6b4b49; box-shadow:0 20px 60px rgba(5,9,14,.34),0 0 0 5px rgba(255,255,255,.04); }
+.video-call-window { position:absolute; z-index:7; top:4.2rem; right:clamp(1.2rem,5vw,4.5rem); width:clamp(10.5rem,18vw,15rem); aspect-ratio:4/5; overflow:hidden; border:1px solid rgba(255,255,255,.42); border-radius:1.2rem; padding:0; color:inherit; background:#6b4b49; box-shadow:0 20px 60px rgba(5,9,14,.34),0 0 0 5px rgba(255,255,255,.04); cursor:pointer; text-align:left; transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s; }
+.video-call-window:hover { transform:translateY(-3px) scale(1.015); border-color:rgba(239,195,151,.72); box-shadow:0 24px 68px rgba(5,9,14,.42),0 0 0 6px rgba(208,160,120,.08); }
+.video-call-window:focus-visible { outline:2px solid var(--dawn-apricot); outline-offset:4px; }
+.perspective-switch-hint { position:absolute; z-index:10; right:.55rem; bottom:.5rem; max-width:68%; border-radius:99px; padding:.28rem .45rem; color:rgba(255,255,255,.78); background:rgba(13,17,25,.56); backdrop-filter:blur(8px); font-size:.45rem; letter-spacing:.05em; white-space:nowrap; }
+.perspective-switch-hint i { color:var(--dawn-apricot); font-style:normal; }
+.compact-sender-scene { position:absolute; inset:0; display:block; overflow:hidden; background:#27323c; }
+.compact-sender-frame { position:absolute; inset:0; display:block; width:400%; height:400%; transform:scale(.25); transform-origin:0 0; }
+.compact-sender-frame > .morning-sky { opacity:1; }
+.compact-sender-frame .sender-route-scene p { display:none; }
+.home-perspective-scene { position:absolute; z-index:1; inset:0; animation:perspective-in .5s cubic-bezier(.22,1,.36,1) both; }
+.commute-scene.is-sender-view > .sender-route-scene { animation:perspective-in .5s cubic-bezier(.22,1,.36,1) both; }
+.commute-scene.is-her-view { background:#7a5a52; }
+.commute-scene.is-her-view .home-window { left:48%; top:8%; width:43%; height:42%; }
+.commute-scene.is-her-view .home-desk { left:42%; right:4%; bottom:18%; }
+.commute-scene.is-her-view .home-laptop { height:clamp(8rem,24vh,14rem); }
+.commute-scene.is-her-view .home-plant { left:45%; bottom:18%; transform:scale(1.8); transform-origin:bottom; }
+.commute-scene.is-her-view .home-bed { right:0; bottom:2%; width:min(60rem,94vw); max-height:82%; }
+.commute-scene.is-her-view .home-chibi { right:4%; bottom:9%; width:min(31rem,58vw); max-height:72%; }
+.commute-scene.is-her-view .home-office-scene p { left:auto; right:4.5rem; bottom:2.4rem; font-size:.65rem; text-align:right; }
+.commute-scene.is-her-view .home-office-scene p span { font-size:.5rem; }
+.commute-scene.is-her-view .scene-copy-shade { background:linear-gradient(90deg,rgba(26,19,23,.9) 0,rgba(38,27,31,.68) 40%,rgba(57,40,40,.2) 72%,transparent 86%),linear-gradient(0deg,rgba(24,18,23,.78),transparent 48%); }
 .call-status { position:absolute; z-index:9; top:.65rem; left:.65rem; padding:.32rem .5rem; border-radius:99px; color:rgba(255,255,255,.82); background:rgba(16,19,25,.48); backdrop-filter:blur(8px); font-size:.5rem; letter-spacing:.08em; }.call-status i { display:inline-block; width:5px; height:5px; margin-right:.3rem; border-radius:50%; background:#8fd3a9; box-shadow:0 0 9px #8fd3a9; }
 .home-office-scene { position:absolute; inset:0; overflow:hidden; background:linear-gradient(155deg,#73554f,#b47762 56%,#e1a57b); }
 .home-office-scene::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 28% 18%,rgba(255,226,183,.5),transparent 36%),linear-gradient(0deg,rgba(22,18,23,.38),transparent 55%); }
@@ -122,6 +142,7 @@ button { font: inherit; }
 .present-closing h3 { margin:.7rem 0 .9rem; font:400 clamp(1.3rem,2.2vw,2rem)/1.35 Georgia,'Songti SC',serif; }.present-closing ul { margin:0 0 .9rem; padding:0; list-style:none; }.present-closing li { border-top:1px solid var(--line); padding:.48rem 0; color:#c5bdb8; font-size:.68rem; line-height:1.5; }.present-closing > p:last-child { margin:0; color:var(--muted); font-size:.7rem; line-height:1.7; }
 
 @keyframes sound { from { transform:scaleY(.6); } to { transform:scaleY(1.35); } }
+@keyframes perspective-in { from { opacity:.35; transform:scale(1.025); } to { opacity:1; transform:scale(1); } }
 @media (min-width:701px) {
   .has-arrived .video-call-window { width:9rem; transition:width .35s cubic-bezier(.22,1,.36,1); }
   .has-arrived .present-closing { position:absolute; z-index:6; top:13rem; right:0; width:min(22rem,28%); max-height:calc(100% - 13rem); overflow:auto; }
@@ -148,6 +169,12 @@ button { font: inherit; }
   .home-chibi { right:-14%; bottom:15%; width:86%; }
   .home-office-scene p { left:.45rem; bottom:.38rem; font-size:.44rem; }
   .home-office-scene p span { font-size:.35rem; }
+  .perspective-switch-hint { right:.3rem; bottom:.3rem; max-width:90%; padding:.2rem .3rem; font-size:.34rem; }
+  .commute-scene.is-her-view .home-window { left:36%; top:11%; width:58%; height:38%; }
+  .commute-scene.is-her-view .home-desk { left:29%; right:-8%; bottom:20%; }
+  .commute-scene.is-her-view .home-bed { right:-8%; bottom:5%; width:116vw; max-height:76%; }
+  .commute-scene.is-her-view .home-chibi { right:-11%; bottom:17%; width:82vw; max-height:65%; }
+  .commute-scene.is-her-view .home-office-scene p { display:none; }
   .morning-sun { right:17%; top:8%; width:26vw; height:26vw; }
   .morning-horizon { bottom:34%; }
   .morning-street { height:39%; bottom:-2%; }

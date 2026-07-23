@@ -44,4 +44,24 @@ describe('CommuteExperience', () => {
     expect(closingCard?.querySelectorAll(':scope > p')).toHaveLength(1)
     expect(screen.queryByText(/不用现在回复/)).not.toBeInTheDocument()
   })
+
+  it('switches both narratives on one shared timeline without moving the selected time', async () => {
+    const user = userEvent.setup()
+    render(<CommuteExperience />)
+
+    await user.click(screen.getByRole('button', { name: /回到 7 月 21 日 09:40/ }))
+    await user.click(screen.getByRole('button', { name: '10:25 地铁通话' }))
+    expect(screen.getByRole('slider', { name: '拖动早晨时间线' })).toHaveValue('643')
+
+    await user.click(screen.getByRole('button', { name: '切换到她的视角' }))
+    expect(screen.getByRole('main')).toHaveClass('is-her-perspective')
+    expect(screen.getByRole('button', { name: '10:25 悠闲办公' })).toBeInTheDocument()
+    expect(screen.getByText(/你在家悠闲办公/)).toBeInTheDocument()
+    expect(screen.getByRole('slider', { name: '拖动早晨时间线' })).toHaveValue('643')
+
+    await user.click(screen.getByRole('button', { name: '切换回我的视角' }))
+    expect(screen.getByRole('main')).toHaveClass('is-sender-perspective')
+    expect(screen.getByRole('button', { name: '10:25 地铁通话' })).toBeInTheDocument()
+    expect(screen.getByRole('slider', { name: '拖动早晨时间线' })).toHaveValue('643')
+  })
 })
