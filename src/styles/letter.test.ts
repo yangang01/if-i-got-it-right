@@ -43,10 +43,11 @@ describe('letter visual system', () => {
     expect(rule('.home-bed')).toContain('width:98%')
   })
 
-  it('keeps the final card usable on short landscape phones', () => {
-    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing\s*\{[^}]*inset:4\.1rem 7\.8rem auto 0[^}]*box-sizing:border-box[^}]*max-height:calc\(100svh - 14rem\)/)
-    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing \.scene-eyebrow\s*\{[^}]*margin:0/)
-    expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing h3 br\s*\{[^}]*display:none/)
+  it('stacks the final narrative and commitments in a mobile scroll flow', () => {
+    expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.has-arrived \.commute-body\s*\{[^}]*overflow-y:auto[^}]*scroll-snap-type:y proximity/)
+    expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.has-arrived \.arrival-story\s*\{[^}]*min-height:100%[^}]*scroll-snap-align:start/)
+    expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing\s*\{[^}]*position:relative[^}]*inset:auto[^}]*max-height:none/)
+    expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.mobile-closing-cue\s*\{[^}]*display:flex/)
     expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing ul\s*\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/)
   })
 })
