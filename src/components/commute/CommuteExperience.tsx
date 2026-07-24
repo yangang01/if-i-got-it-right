@@ -64,8 +64,11 @@ export function CommuteExperience({ onStartRewind }: { onStartRewind?: () => voi
     <VideoCallWindow progress={timeline.progress} perspective={perspective} onToggle={() => setPerspective((current) => current === 'sender' ? 'her' : 'sender')} />
     <div className="experience-top"><span>{perspective === 'her' ? '她的房间 · 同一通视频' : '两个地方 · 同一通视频'}</span><span>09:40 — 10:50</span></div>
     <div className="commute-body">
-      <StageNarrative progress={timeline.progress} perspective={perspective} />
-      {arrived && <motion.section className="present-closing" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
+      <div className="arrival-story">
+        <StageNarrative progress={timeline.progress} perspective={perspective} />
+      </div>
+      {arrived && <p className="mobile-closing-cue">向上滑，看看我会怎么做 <span aria-hidden="true">↑</span></p>}
+      {arrived && <motion.section className="present-closing" initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .18 }} transition={{ duration: reduceMotion ? 0 : .36, ease: [0.22, 1, 0.36, 1] }}>
         <p className="scene-eyebrow">回到现在</p><h3>理解了还不够，<br />以后要真的做到。</h3>
         <ul>{commuteNarrative.commitments.map((item) => <li key={item}>{item}</li>)}</ul>
       </motion.section>}
