@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import { CommuteExperience } from './CommuteExperience'
@@ -68,5 +68,17 @@ describe('CommuteExperience', () => {
     expect(screen.getByRole('main')).toHaveClass('is-sender-perspective')
     expect(screen.getByRole('button', { name: '10:25 地铁通话' })).toBeInTheDocument()
     expect(screen.getByRole('slider', { name: '拖动早晨时间线' })).toHaveValue('643')
+  })
+
+  it('keeps the arrived time selected while the closing content is scrolled', async () => {
+    const user = userEvent.setup()
+    render(<CommuteExperience />)
+
+    await user.click(screen.getByRole('button', { name: /回到 7 月 21 日 09:40/ }))
+    await user.click(screen.getByRole('button', { name: '10:50 到公司' }))
+
+    fireEvent.wheel(document.querySelector('.commute-body')!, { deltaY: -120 })
+
+    expect(screen.getByRole('slider', { name: '拖动早晨时间线' })).toHaveValue('1000')
   })
 })

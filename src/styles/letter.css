@@ -191,8 +191,8 @@ button { font: inherit; }
   .sender-route-scene p { display:none; }
   .commute-body { display:block; min-height:0; }
   .has-arrived .commute-body { height:100%; overflow-y:auto; overscroll-behavior:contain; scroll-snap-type:y proximity; scrollbar-width:thin; }
-  .has-arrived .arrival-story { display:block; position:relative; min-height:100%; scroll-snap-align:start; }
-  .has-arrived .arrival-story .stage-narrative { min-height:100%; }
+  .has-arrived .arrival-story { display:block; position:relative; height:100%; min-height:100%; scroll-snap-align:start; }
+  .has-arrived .arrival-story .stage-narrative { height:100%; min-height:100%; }
   .stage-narrative { width:100%; min-height:calc(100svh - 14.5rem); padding:.8rem 0; border:0; }
   .narrative-copy { inset:auto .7rem; }
   .narrative-copy h2 { max-width:92%; margin:.8rem 0 1rem; font-size:clamp(2rem,10vw,3rem); text-shadow:0 2px 22px rgba(0,0,0,.32); }

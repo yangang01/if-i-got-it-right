@@ -43,6 +43,7 @@ export function CommuteExperience({ onStartRewind }: { onStartRewind?: () => voi
     }
     const onWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaY) < 16) return
+      if (event.target instanceof Element && event.target.closest('.has-arrived .commute-body')) return
       timeline.step(event.deltaY > 0 ? 1 : -1)
     }
     window.addEventListener('keydown', onKey)

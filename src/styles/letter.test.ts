@@ -45,7 +45,8 @@ describe('letter visual system', () => {
 
   it('stacks the final narrative and commitments in a mobile scroll flow', () => {
     expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.has-arrived \.commute-body\s*\{[^}]*overflow-y:auto[^}]*scroll-snap-type:y proximity/)
-    expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.has-arrived \.arrival-story\s*\{[^}]*min-height:100%[^}]*scroll-snap-align:start/)
+    expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.has-arrived \.arrival-story\s*\{[^}]*height:100%[^}]*min-height:100%[^}]*scroll-snap-align:start/)
+    expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.has-arrived \.arrival-story \.stage-narrative\s*\{[^}]*height:100%[^}]*min-height:100%/)
     expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing\s*\{[^}]*position:relative[^}]*inset:auto[^}]*max-height:none/)
     expect(css).toMatch(/@media \(max-width:700px\)[\s\S]*\.mobile-closing-cue\s*\{[^}]*display:flex/)
     expect(css).toMatch(/@media \(max-height:520px\) and \(max-width:700px\)[\s\S]*\.has-arrived \.present-closing ul\s*\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/)
